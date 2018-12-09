@@ -1,0 +1,19 @@
+<div class="todo-list-container">
+  <ul class="list-group" *ngFor="let todo of todos">
+    <li class="list-group-item clearfix todo-item"
+        [ngClass]="{'list-group-item-success': todo.done}">
+
+      <div class="todo-name">{{todo.name}}</div>
+      <div class="buttons">
+        <button class="btn btn-success"
+                (click)="doneTodo(todo)"
+                [disabled]="todo.done">Done
+        </button>
+        <button class="btn btn-danger"
+                (click)="removeTodo(todo.id)">Remove
+        </button>
+      </div>
+    </li>
+
+  </ul>
+</div>

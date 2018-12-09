@@ -1,0 +1,13 @@
+
+.new-todo {
+  &__section {
+    display: flex;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+  &__input {
+    flex: 100%;
+  }
+}

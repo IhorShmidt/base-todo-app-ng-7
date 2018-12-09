@@ -1,0 +1,12 @@
+<div class="new-todo">
+  <div class="row new-todo__section">
+    <div class="col-md-8 new-todo__input">
+      <input type="text" class="form-control"
+             #newTodo placeholder="Type new todo...">
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary"
+              (click)="onAddTodo(newTodo.value)">Add</button>
+    </div>
+  </div>
+</div>

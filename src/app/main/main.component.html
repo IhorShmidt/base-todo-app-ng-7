@@ -1,0 +1,20 @@
+<div class="main-component">
+
+  <div class="row">
+    <div class="col-md-8 col-xs-12 col-lg-8">
+      <app-new-todo
+        (addTodo)="addTodo($event)"></app-new-todo>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-xs-12 col-lg-8">
+      <app-todo-list
+        (doneTodoEvent)="doneTodoInMainComponent($event)"
+        (removeTodoEvent)="removeTodo($event)"
+
+        [todos]="todosArray"></app-todo-list>
+    </div>
+  </div>
+</div>
