@@ -19,15 +19,15 @@ export class NewTodoComponent implements OnInit {
   }
 
   onAddTodo(newValue: string) {
-
+    if (newValue.length < 2) {
+      return;
+    }
     const newId = parseInt('' + Math.random() * 10000000, 10);
 
     // find in todo array if this fucking id present bleat
 
     const todo: TodoInterface = {
       name: newValue,
-      done: false,
-      id: newId
     };
 
     this.newTodo.nativeElement.value = '';

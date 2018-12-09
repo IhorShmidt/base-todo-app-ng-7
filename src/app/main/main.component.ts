@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoInterface} from '../models/todo';
+import {TodosService} from '../services/todos.service';
 
 @Component({
   selector: 'app-main',
@@ -8,34 +9,52 @@ import {TodoInterface} from '../models/todo';
 })
 export class MainComponent implements OnInit {
 
-  todosArray: TodoInterface[] = [
-    {name: 'buy milk', done: false, id: 0},
-    {name: 'drink beer', done: true, id: 1},
-    {name: 'write todo', done: false, id: 3},
-  ];
+  // todosArray: TodoInterface[] = [
+  //   {name: 'buy milk', done: false, id: 0},
+  //   {name: 'drink beer', done: true, id: 1},
+  //   {name: 'write todo', done: false, id: 3},
+  // ];
 
-  constructor() {
+  todosArray: any[] = [];
+
+  constructor(private todoService: TodosService) {
   }
 
   ngOnInit() {
+    this.todoService.getTodods().then((todos: any[]) => {
+      this.todosArray = todos;
+    });
   }
 
   addTodo($event: TodoInterface) {
-    this.todosArray.push($event);
+    this.todoService.createTodo($event)
+      .then((allTodos: any[]) => {
+        this.todosArray = allTodos;
+      });
   }
 
-  doneTodoInMainComponent(todoId: number) {
-    this.todosArray = this.todosArray.map(item => {
-      if (item.id === todoId) {
-        item.done = true;
-      }
-      return item;
-    });
+  doneTodoInMainComponent(todoId: string) {
+    this.todoService.updateTodo(todoId, {done: true})
+      .then((allTodos: any[]) => {
+        this.todosArray = allTodos;
+      });
+
+    // this.todosArray = this.todosArray.map(item => {
+    //   if (item.id === todoId) {
+    //     item.done = true;
+    //   }
+    //   return item;
+    // });
   }
 
-  removeTodo(todoId: number) {
-    this.todosArray = this.todosArray.filter(item => {
-      return item.id !== todoId;
-    });
+  removeTodo(todoId: string) {
+
+    this.todoService.removeTodo(todoId)
+      .then((allTodos: any[]) => {
+        this.todosArray = allTodos;
+      });
+    // this.todosArray = this.todosArray.filter(item => {
+    //   return item.id !== todoId;
+    // });
   }
 }

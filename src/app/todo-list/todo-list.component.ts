@@ -21,7 +21,7 @@ export class TodoListComponent implements OnInit {
   }
 
   doneTodo(todo: TodoInterface) {
-    this.doneTodoEvent.emit(todo.id);
+    this.doneTodoEvent.emit(todo._id);
   }
 
   removeTodo(id: number) {
